@@ -99,9 +99,9 @@ function startComparison() {
     
     const grid = document.getElementById('grid');
 
+    // Let's create the grid!
     getDinos().then(res => {
         let dinos = res.map(dino => new Dino(dino.species, dino.weight, dino.height, dino.diet, dino.where, dino.when, dino.fact));
-        console.log(dinos);
         dinos.splice(4, 0, human);
 
         dinos.forEach((dino, index) => {
