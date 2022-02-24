@@ -121,9 +121,8 @@ function startComparison() {
             const name = document.createElement('h4');
             const fact = document.createElement('p');
 
-            const generateRandomFact = randomFact(dino.weight, human.weight, dino.height, human.height, dino.diet, human.diet, dino.when);
 
-            fact.innerHTML = generateRandomFact;
+            fact.innerHTML = randomFact(dino.weight, human.weight, dino.height, human.height, dino.diet, human.diet, dino.when);
             name.innerHTML = dino.species;
             const image = document.createElement('img');
             image.setAttribute('src', `/images/${dino.species.toLowerCase()}.png`);
