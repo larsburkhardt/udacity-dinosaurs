@@ -75,17 +75,13 @@ function generateRandomInt(min, max) {
 //Switch: Random Fact
 function randomFact(dinoWeight, humanWeight, dinoHeight, humanHeight, dinoDiet, humanDiet, dinoWhen ) {
     switch (generateRandomInt(1, 4)) {
-        case 1: compareWeight(dinoWeight, humanWeight);
-            break;
-        case 2: compareHeight(dinoHeight, humanHeight);
-            break;
-        case 3: compareDiet(dinoDiet, humanDiet);
-            break;
-        case 4: `The dino lived during the ${dinoWhen}`;
+        case 1: return compareWeight(dinoWeight, humanWeight);
+        case 2: return compareHeight(dinoHeight, humanHeight);
+        case 3: return compareDiet(dinoDiet, humanDiet);
+        case 4: return `The dino lived during the ${dinoWhen}`;
             
     }
 }
-
 
     // Use IIFE to get human data from form
 const human = (function () {
