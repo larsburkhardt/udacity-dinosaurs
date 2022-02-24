@@ -1,12 +1,12 @@
+// Get JSON
 async function getDinos() {
     const dinoJson = await fetch("./dino.json");
     const data = await dinoJson.json();
-    // console.log(data.Dinos);
     
     return data.Dinos;
 
 }
-    // Create Dino Constructor
+// Create Dino Constructor
 class Dino {
     constructor(species, weight, height, diet, where, when, fact) {
         this.species = species;
@@ -18,7 +18,7 @@ class Dino {
         this.fact = fact;
     }  
 }
-
+// Create Human Constructor
 class Human {
     constructor(species, height, weight, diet) {
         this.species = species;
@@ -28,10 +28,10 @@ class Human {
 
     }
 }
-
+// Comparison Function 1 = height
 function compareHeight(dinoHeight, humanHeight) {
     const heightRatio = Math.round(dinoHeight / humanHeight);
-
+    
     if (heightRatio === 1) {
         return `You have the same height!`
     } else if (heightRatio > 1) {
@@ -41,9 +41,10 @@ function compareHeight(dinoHeight, humanHeight) {
     }
 }
 
+// Comparison Function 2 = weight
 function compareWeight (dinoWeight, humanWeight) {
-    const weightRatio = Math.round(dinoWeight / humanWeight);
-
+    const weightRatio = Math.round(dinoWeight / humanWeight);    
+    
     if (weightRatio === 1) {
         return `Your weight is the same as the dino!`;
     } else if (weightRatio > 1) {
@@ -54,6 +55,7 @@ function compareWeight (dinoWeight, humanWeight) {
 }
 
 
+// Comparison Function 3 = diet
 function compareDiet(dinoDiet, humanDiet) {
     if (dinoDiet === humanDiet) {
         return `You share the same diet!`;
@@ -62,11 +64,11 @@ function compareDiet(dinoDiet, humanDiet) {
     }
 }
 
-// Random Number
+// Function for random number
 function generateRandomInt(min, max) {
     return Math.floor((Math.random() * (max - min)) + min);
 }
-//Switch: Random Fact
+//Switch: Random Fact with given random number
 function randomFact(dinoWeight, humanWeight, dinoHeight, humanHeight, dinoDiet, humanDiet, dinoWhen ) {
     switch (generateRandomInt(1, 4)) {
         case 1: return compareWeight(dinoWeight, humanWeight);
@@ -77,22 +79,20 @@ function randomFact(dinoWeight, humanWeight, dinoHeight, humanHeight, dinoDiet, 
     }
 }
 
-    // Use IIFE to get human data from form
+// Use IIFE to get human data from form
 const human = (function () {
     const humanName = document.getElementById('name').value;
-    // const humanSpecies = "Homo sapiens";
     const humanHeight = (Number(document.getElementById('feet').value) * 12 + Number(document.getElementById('inches').value));
     const humanWeight = Number(document.getElementById('weight').value);
     const humanDiet = document.getElementById('diet').value;
     
     const humanObj = new Human(humanName, humanHeight, humanWeight, humanDiet);
-    console.log(humanObj);
     
     return humanObj;
     
 })();
 
-
+// Comparison Function for Click event
 function startComparison() {
     // Hide form after submit
     document.getElementById('dino-compare').style.display = "none";
