@@ -79,18 +79,18 @@ function randomFact(dinoWeight, humanWeight, dinoHeight, humanHeight, dinoDiet, 
     }
 }
 
-// Use IIFE to get human data from form
-const human = (function () {
-    const humanName = document.getElementById('name').value;
-    const humanHeight = (Number(document.getElementById('feet').value) * 12 + Number(document.getElementById('inches').value));
-    const humanWeight = Number(document.getElementById('weight').value);
-    const humanDiet = document.getElementById('diet').value;
+// Use IIFE to get human data from form (Moved to event listener)
+// const human = (function () {
+//     const humanName = document.getElementById('name').value;
+//     const humanHeight = (Number(document.getElementById('feet').value) * 12 + Number(document.getElementById('inches').value));
+//     const humanWeight = Number(document.getElementById('weight').value);
+//     const humanDiet = document.getElementById('diet').value;
     
-    const humanObj = new Human(humanName, humanHeight, humanWeight, humanDiet);
+//     const humanObj = new Human(humanName, humanHeight, humanWeight, humanDiet);
     
-    return humanObj;
+//     return humanObj;
     
-})();
+// })();
 
 // Comparison Function for Click event
 function startComparison() {
@@ -102,6 +102,22 @@ function startComparison() {
     // Let's create the grid!
     getDinos().then(res => {
         let dinos = res.map(dino => new Dino(dino.species, dino.weight, dino.height, dino.diet, dino.where, dino.when, dino.fact));
+        
+        
+        
+        const human = (function () {
+            const humanName = document.getElementById('name').value;
+            const humanHeight = (Number(document.getElementById('feet').value) * 12 + Number(document.getElementById('inches').value));
+            const humanWeight = Number(document.getElementById('weight').value);
+            const humanDiet = document.getElementById('diet').value;
+    
+            const humanObj = new Human(humanName, humanHeight, humanWeight, humanDiet);
+    
+            return humanObj;
+    
+        })();
+
+
         dinos.splice(4, 0, human);
 
         dinos.forEach((dino, index) => {
@@ -118,6 +134,8 @@ function startComparison() {
             }
             else {
                 fact.innerHTML = randomFact(dino.weight, human.weight, dino.height, human.height, dino.diet, human.diet, dino.when);
+                console.log(`${dino.weight}, ${human.weight}, ${dino.height}, ${human.height},${dino.diet}, ${human.diet}, ${dino.when}`);
+                
             }
             if (index === 4) {
                 image.setAttribute('src', `/images/human.png`);            
